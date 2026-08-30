@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAGxUlEQVR4nO3dbWwTdRzA8Z4r9AV70G1sQzASEZgOUGHjYQNkwgB5SBYYU0ICbuALEY2JRBIENYGARCIEXyguGUYUE2FjJAa28Ox43AwMx4QNiIFEGWUbG+wNsq2+qB5l8Gu7tve/a/l+XvXKlfvn+uV67d0/aE+nJNqAR3nC7AHAuogDIuKAiDggIg6IiAMi4oCIOCAiDoiIAyLigIg4ICIOiIgDIuKAiDggIg6IiAMi4oCIOCAiDoiIAyLigIg4ICIOiIgDIuKAiDggIg6IiAMi4oCIOCAiDoiIAyLigIg4ICIOiIgDIuKAiDggIg6IiAMi4oCIOCAiDoiIAyLigIg4ICIOiIgDIuKAyK5sS39dv+n/yv379TVuJPCTpuA/AOxRFp5IxFzqjhz9+/Udu225P2ueKtgYcE8IIcPPOdxvs/9l2Gy2sduWu48ZJGIuRSek/pcR2PowgrW+rZRMX2H2EHCfunMOn9xllExfMbd8gz/r86ETJJ/n+1Y5cujHDMpQxuc+tEocbpShmPc9aYk4ONWwJtVxPNxBTz9QoIzSOPRTzm7P2CjDkpTGoRfQrZKelsHP6qHifU+q/lh5uIPAjhn0ETyf+9C03zmCPwmlD6OZ8G3F81DBqYaVmfNV1t0EZVicojhOFWzs9oz3Mh5eH+oZHod+8d3/91u/n4OzCnNxJxhEKuJw4x7SsKMuDoQdS1x4gzURB0TEARFxQEQcEBEHRMQBEXFAxCx7iLi2AhGz7CFilj1EzLKHyFrfVpj6ZinMsn98McseImbZwxtm2SNAzLKHiFn2EDHL/rHGLHs8GrPsEThm2UPELHuImGUPEbPsIeJOMIiYZQ8Rs+whssSFN1gTcUBEHBARB0TEARFxQEQcEBEHRMyyh4hrKxApnWXv/8rMTLECdbPse/QqZtlbASekEBEHRBaaZd9TWROyzR5CeDteedj7CuF65KCM4Pnch2EZB2WEivc9GZZxQA3igIg4IArLOHyeZsNP3vdkWMZho49Q8LkPw/h3DvowWrgeOaAAcUBEHBCpm2Xfo1cxy94KLHqbIKyAWfYQMcseIk5IISIOiIgDIuKAiDggIg6IiAMi4oCIOCCy+s0+p6vPDBjwjP/r583NPXniePDb3VdxYMSIl/TFzs7Ojo6O9vb2lpbma1ev1tSc3VO2+8qVy8FvyMo4cvglKirK4XAkJCQMHjxk8pScD5d/dLTyxPfbd6Sk9DN7aAYijgBpmjZ5Sk7F/kMvvzLS7LEYJcwuvMXGxl2ov38w/+yTVUVFW43YkOfHypEjhxfMz7fb7fEJCemjMgoXLxmXmaWv6XQ6X582pbHxuhHDMBdHDn91dHQ4b9zYu/eXvLm5X23ZrD+flJS0ctVq88ZloAiMY9y4zC83bfn12Mn6S39evfb3udoLO3ftfmfpsri4J0O1iQ2fr/utulpfzM2dk5ySon4YRouoOPr06fNtUfGu0j1vvDl/0KDno6Oj7b16JSYmZmaNX7X602MnTmdnvxaSDblcruLiIn0xKipq4sRJ6odhtMiJQ9O0rUXFM2fNllaIj48v/m57ekZGSDZXXVXluZiWlmbKMAwVOXHMnDXb819kScnOrMzRqUOeKyxY2Nzc7H6yd+/e69d/EZLNOW86PRefio83ZRiGsvqPYP7Ly8vXHzc01H/w/rKuri6bzVZRvs/hcHz9zX+fAi+mpaWmvnDx4oUQb97lssQwQipyjhzDhg/XH1eU73O/Jfqi6/83z2azDRs+IvjNJScley62tLSYMgxDRU4csbFx+uOmpgfudL979277nTv6YlxcbPCbGz1mjOdiXV2dKcMwVOTEcft2m/44MfGBmQ0OhyM6JkZfbGu7HeS2NE0rLFyiL3Z2dlZWHlU/DKNFThzna2v1x1OnTdc0TVo8X/t7kNta+fHqkaPS9cWystIbjY3qh2G0yImjpGSn/njo0NRNm7c8O3BgTExMztRpa9au1//oj7q6wE4D7XZ7UlLSjBmzdpXuWfrue/rzTqdz3do1yoahUuRcW9E0bcdPP098dZKXl9+7909+3pyqqtM+N9Ttkr2kqalp0cIFNWfP6M+Edhjmipwjh8vlentJQXn5XmmF1tZbiwvfCtVb4nK5Dh7YPzUn27MM9cMwVOT8zmGz2drb2xcXLMoaP2HevPxR6RnJySkOh6Otra2hof7QwQM7fvyhtfVWYH9zV1eX580+587VlO0uvXz5kuJhKBZmHytQKXI+VhByxAERcUBEHBARB0TEARFxQEQcEBEHRMQBEXFARBwQEQdExAERcUBEHBARB0TEAdG/k1e6mbQyrV0AAAAASUVORK5CYII=">
+<meta name="apple-mobile-web-app-title" content="To Do">
+<title>Praxis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@500&display=swap');
+
+  :root {
+    --bg: #f2f0ec;
+    --surface: #ffffff;
+    --border: #e0dbd4;
+    --text: #1a1814;
+    --text-muted: #8a8278;
+    --radius: 16px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+
+    /* Category colours */
+    --steri:    #1b6ca8;  /* blue */
+    --praxis:   #2d6a4f;  /* green */
+    --abends:   #6a3d9a;  /* purple */
+    --montags:  #c9184a;  /* red */
+    --dienstags:#d4670a;  /* orange */
+    --mittwochs:#0a7a6a;  /* teal */
+    --donnerstags:#7b5ea7;/* violet */
+    --freitags: #1a7a3c;  /* dark green */
+    --monatlich:#8b5e3c;  /* brown */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-bottom: 100px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px 12px;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+  }
+  .header-row { display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); }
+  .logo span { color: var(--praxis); }
+  .date-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    color: var(--text-muted);
+    background: var(--bg);
+    padding: 5px 12px; border-radius: 20px;
+  }
+
+  /* Progress bar */
+  .progress-wrap { margin-top: 12px; }
+  .progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .progress-label { font-size: 13px; font-weight: 600; color: var(--text-muted); }
+  .progress-pct { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700; color: var(--praxis); }
+  .progress-track { height: 10px; background: var(--bg); border-radius: 5px; overflow: hidden; border: 1px solid var(--border); }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--praxis), #52b788); border-radius: 5px; transition: width 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex; gap: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    padding: 14px 20px;
+    border: none; background: transparent;
+    font-size: 14px; font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .tab.active { color: var(--praxis); border-bottom-color: var(--praxis); }
+
+  /* ── CONTENT ── */
+  .content { padding: 20px 20px 20px; }
+  .hidden { display: none !important; }
+
+  /* ── CATEGORY GROUP ── */
+  .cat-group { margin-bottom: 28px; }
+  .tile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .subgroup { margin-bottom: 14px; }
+  .subgroup-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--text-muted);
+    padding: 0 4px; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .subgroup-title::before { content:''; flex:1; height:1px; background:var(--border); }
+  .cat-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10px; padding: 0 4px;
+  }
+  .cat-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .cat-title { font-size: 13px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); }
+  .cat-progress { font-size: 12px; font-family: 'DM Mono', monospace; color: var(--text-muted); background: var(--border); padding: 2px 8px; border-radius: 10px; }
+
+  /* ── TASK TILE ── */
+  .task-tile {
+    display: flex; align-items: center;
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.1s, box-shadow 0.1s;
+    min-height: 80px;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .task-tile:active { transform: scale(0.98); }
+  .task-tile.done { opacity: 0.5; }
+  .task-tile.done .tile-title { text-decoration: line-through; }
+
+  /* Left colour bar */
+  .tile-bar { width: 8px; align-self: stretch; flex-shrink: 0; }
+
+  /* Checkbox area */
+  .tile-check {
+    width: 44px; height: 80px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tile-check-inner {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 2.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; background: white;
+  }
+  .task-tile.done .tile-check-inner {
+    border-color: transparent;
+  }
+  .tile-check-inner svg { display: none; }
+  .task-tile.done .tile-check-inner svg { display: block; }
+
+  /* Text */
+  .tile-body { flex: 1; padding: 14px 14px 14px 4px; min-width: 0; }
+  .tile-title { font-size: 13px; font-weight: 600; line-height: 1.3; margin-bottom: 2px; }
+  .tile-note { font-size: 11px; color: var(--text-muted); line-height: 1.25; }
+  .tile-meta { display: flex; align-items: center; gap: 8px; margin-top: 5px; flex-wrap: wrap; }
+  .tile-time {
+    font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
+    padding: 2px 8px; border-radius: 6px;
+    background: #fff3ed; color: #e85d04;
+  }
+  .tile-time.ok { background: #d8f3dc; color: #2d6a4f; }
+  .tile-assignee {
+    font-size: 12px; font-weight: 700;
+    padding: 2px 10px; border-radius: 20px;
+    color: white;
+  }
+
+  /* ── MEMBER POPUP ── */
+  .popup-backdrop {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 400; align-items: flex-end; justify-content: center;
+  }
+  .popup-backdrop.open { display: flex; }
+  .popup {
+    background: var(--surface);
+    border-radius: 24px 24px 0 0;
+    padding: 24px 24px 40px;
+    width: 100%; max-width: 600px;
+  }
+  .popup-title {
+    font-size: 13px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--text-muted);
+    margin-bottom: 20px; text-align: center;
+  }
+  .popup-task-name {
+    font-size: 17px; font-weight: 700; text-align: center;
+    margin-bottom: 24px; line-height: 1.3; color: var(--text);
+  }
+  .member-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .member-btn {
+    flex: 1; min-width: 120px; max-width: 160px;
+    padding: 20px 16px;
+    border-radius: var(--radius); border: none;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    font-size: 18px; font-weight: 800; color: white;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    text-align: center;
+  }
+  .member-btn:active { transform: scale(0.95); }
+  .member-btn .btn-initials { font-size: 28px; display: block; margin-bottom: 4px; }
+  .member-btn .btn-name { font-size: 13px; font-weight: 600; opacity: 0.9; display: block; }
+  .popup-cancel {
+    margin-top: 16px; width: 100%; padding: 14px;
+    border-radius: 12px; border: 1.5px solid var(--border);
+    background: var(--bg); cursor: pointer;
+    font-size: 15px; font-weight: 600; color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* Undo snackbar */
+  .snackbar {
+    position: fixed; bottom: 90px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1a1814; color: white;
+    padding: 12px 20px; border-radius: 24px;
+    font-size: 14px; font-weight: 600;
+    z-index: 500; opacity: 0;
+    transition: all 0.3s; pointer-events: none;
+    display: flex; align-items: center; gap: 12px;
+    white-space: nowrap; max-width: 90vw;
+  }
+  .snackbar.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+  .snackbar-undo {
+    background: rgba(255,255,255,0.2); border: none;
+    color: white; font-weight: 700; font-size: 13px;
+    padding: 4px 10px; border-radius: 8px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ── BOTTOM BAR ── */
+  .bottom-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 12px 20px 28px;
+    display: flex; gap: 10px; align-items: center;
+    z-index: 200;
+  }
+  .export-btn {
+    flex: 1; padding: 13px;
+    border-radius: 12px; border: 1.5px solid var(--border);
+    background: var(--bg); cursor: pointer;
+    font-size: 14px; font-weight: 700;
+    font-family: 'DM Sans', sans-serif; color: var(--text);
+    transition: all 0.15s;
+  }
+  .export-btn.primary {
+    background: var(--praxis); color: white; border-color: var(--praxis);
+    box-shadow: 0 4px 14px rgba(45,106,79,0.3);
+  }
+  .log-count { font-size: 12px; color: var(--text-muted); font-family: 'DM Mono', monospace; white-space: nowrap; }
+
+  /* ── EINKAUF ── */
+  .supplier-group { margin-bottom: 24px; }
+  .supplier-header {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 8px; padding: 0 4px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .supplier-count { background: var(--border); color: var(--text-muted); padding: 1px 8px; border-radius: 10px; font-family: 'DM Mono', monospace; font-size: 11px; }
+  .shop-tile {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--surface); border-radius: var(--radius);
+    padding: 16px 18px; margin-bottom: 8px;
+    box-shadow: var(--shadow); border: 1.5px solid var(--border);
+    cursor: pointer; min-height: 64px;
+    transition: transform 0.1s;
+  }
+  .shop-tile:active { transform: scale(0.98); }
+  .shop-check {
+    width: 28px; height: 28px; border-radius: 8px;
+    border: 2.5px solid var(--border); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s; background: white;
+  }
+  .shop-tile.bought .shop-check { background: var(--praxis); border-color: var(--praxis); }
+  .shop-tile.bought .shop-check::after { content: '✓'; color: white; font-size: 14px; font-weight: 700; }
+  .shop-tile.bought .shop-name { text-decoration: line-through; color: var(--text-muted); }
+  .shop-name { font-size: 15px; font-weight: 600; flex: 1; }
+  .shop-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .shop-add { display: flex; gap: 8px; margin-top: 10px; }
+  .shop-input {
+    flex: 1; padding: 12px 14px; border-radius: 12px;
+    border: 1.5px solid var(--border); background: var(--surface);
+    font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--text);
+    outline: none;
+  }
+  .shop-input:focus { border-color: var(--praxis); }
+  .shop-add-btn {
+    padding: 12px 18px; border-radius: 12px;
+    background: var(--praxis); color: white; border: none;
+    font-size: 22px; cursor: pointer;
+  }
+
+  /* ── LOG MODAL ── */
+  .modal-backdrop {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5); z-index: 300;
+    align-items: flex-end; justify-content: center;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--surface); border-radius: 24px 24px 0 0;
+    padding: 24px; width: 100%; max-width: 640px;
+    max-height: 85vh; overflow-y: auto;
+  }
+  .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .modal-title-text { font-size: 18px; font-weight: 800; }
+  .modal-close {
+    background: var(--bg); border: none; width: 34px; height: 34px;
+    border-radius: 50%; cursor: pointer; font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted);
+  }
+  .log-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .log-table th { text-align: left; padding: 8px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); border-bottom: 2px solid var(--border); }
+  .log-table td { padding: 10px 10px; border-bottom: 1px solid var(--bg); vertical-align: top; }
+  .log-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; color: white; font-size: 12px; font-weight: 700; }
+  .empty-state { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 15px; }
+
+  /* Custom tasks tab */
+  .custom-task-item {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surface); border-radius: var(--radius);
+    padding: 16px 16px; margin-bottom: 8px;
+    box-shadow: var(--shadow); border: 1.5px solid var(--border);
+  }
+  .custom-check {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2.5px solid var(--border); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.15s; background: white;
+  }
+  .custom-check.done { background: var(--accent); border-color: var(--accent); }
+  .custom-check.done::after { content: '✓'; color: white; font-size: 13px; font-weight: 700; }
+  .custom-task-item.done .custom-title { text-decoration: line-through; color: var(--text-muted); }
+  .custom-title { flex: 1; font-size: 15px; font-weight: 600; }
+  .custom-freq { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 700; color: white; white-space: nowrap; }
+  .custom-delete { background: none; border: none; font-size: 18px; color: var(--text-muted); cursor: pointer; padding: 4px; }
+  .custom-add-form { background: var(--surface); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); border: 1.5px solid var(--border); margin-bottom: 16px; }
+  .custom-add-title { font-size: 13px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .freq-select { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .freq-btn { padding: 6px 12px; border-radius: 20px; border: 1.5px solid var(--border); background: var(--bg); font-size: 12px; font-weight: 600; cursor: pointer; color: var(--text-muted); font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
+  .freq-btn.selected { background: var(--accent); color: white; border-color: var(--accent); }
+  .custom-section-header { font-size: 12px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); padding: 0 4px; margin: 16px 0 8px; }
+
+  /* Daily add */
+  .daily-add-wrap { margin: 4px 0 20px; }
+  .daily-add-btn {
+    width: 100%; padding: 16px 20px;
+    border-radius: var(--radius); border: 2px dashed var(--border);
+    background: transparent; cursor: pointer;
+    font-size: 15px; font-weight: 600; color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    transition: all 0.15s;
+  }
+  .daily-add-btn:active { background: var(--surface); }
+  .daily-input-wrap {
+    display: none;
+    background: var(--surface); border-radius: var(--radius);
+    border: 2px solid var(--accent); box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .daily-input-wrap.open { display: block; }
+  .daily-input-header {
+    background: var(--accent); padding: 10px 16px;
+    font-size: 12px; font-weight: 700; color: white;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .daily-input-body { padding: 14px 16px; }
+  .daily-input {
+    width: 100%; padding: 12px 14px;
+    border: 1.5px solid var(--border); border-radius: 10px;
+    font-size: 15px; font-family: 'DM Sans', sans-serif;
+    color: var(--text); background: var(--bg); outline: none;
+    margin-bottom: 10px;
+  }
+  .daily-input:focus { border-color: var(--accent); }
+  .daily-input-actions { display: flex; gap: 8px; }
+  .daily-confirm-btn {
+    flex: 1; padding: 12px; border-radius: 10px;
+    background: var(--accent); color: white; border: none;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .daily-cancel-btn {
+    padding: 12px 16px; border-radius: 10px;
+    background: var(--bg); color: var(--text-muted);
+    border: 1.5px solid var(--border);
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .daily-task-tile { border: 2px dashed var(--border) !important; }
+  .daily-badge {
+    font-size: 10px; font-weight: 700; padding: 2px 7px;
+    border-radius: 6px; background: #fff9e6; color: #b8860b;
+  }
+
+  /* Colour legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 20px 0; }
+  .legend-chip { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--text-muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-row">
+    <div class="logo">Praxis<span>.</span></div>
+    <div class="date-chip" id="dateDisplay"></div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-top">
+      <span class="progress-label">Heute</span>
+      <span class="progress-pct" id="progressPct">0%</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('heute')">Heute</button>
+  <button class="tab" onclick="switchTab('alle')">Alle Aufgaben</button>
+  <button class="tab" onclick="switchTab('einkauf')">🛒 Einkauf</button>
+  <button class="tab" onclick="switchTab('custom')">✏️ Eigene</button>
+</div>
+
+<!-- Legend -->
+<div class="legend" id="legend"></div>
+
+<!-- HEUTE -->
+<div class="content" id="viewHeute">
+  <div id="taskListHeute"></div>
+</div>
+
+<!-- ALLE -->
+<div class="content hidden" id="viewAlle">
+  <div id="taskListAlle"></div>
+</div>
+
+<!-- EINKAUF -->
+<div class="content hidden" id="viewEinkauf">
+  <div class="progress-wrap" style="margin-bottom:20px">
+    <div class="progress-top">
+      <span class="progress-label">Einkaufsliste</span>
+      <span class="progress-pct" id="shopPct"></span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="shopFill" style="width:0%"></div></div>
+  </div>
+  <div id="shoppingList"></div>
+</div>
+
+<!-- EIGENE AUFGABEN -->
+<div class="content hidden" id="viewCustom">
+  <div class="custom-add-form">
+    <div class="custom-add-title">➕ Neue Aufgabe erfassen</div>
+    <input class="daily-input" id="customTitle" type="text" placeholder="Aufgabentitel…" style="margin-bottom:10px">
+    <input class="daily-input" id="customNote" type="text" placeholder="Notiz (optional)" style="margin-bottom:10px">
+    <div class="freq-select" id="freqSelect">
+      <button class="freq-btn selected" data-freq="einmalig" onclick="selectFreq(this)">Einmalig</button>
+      <button class="freq-btn" data-freq="täglich" onclick="selectFreq(this)">Täglich</button>
+      <button class="freq-btn" data-freq="wöchentlich" onclick="selectFreq(this)">Wöchentlich</button>
+      <button class="freq-btn" data-freq="monatlich" onclick="selectFreq(this)">Monatlich</button>
+    </div>
+    <button class="daily-confirm-btn" onclick="addCustomTask()" style="width:100%">Aufgabe hinzufügen</button>
+  </div>
+  <div id="customTaskList"></div>
+</div>
+
+<!-- Bottom bar -->
+<div class="bottom-bar">
+  <button class="export-btn" onclick="openLog()">📋 Protokoll</button>
+  <button class="export-btn primary" onclick="exportForProton()">☁ Sicherung</button>
+  <span class="log-count" id="logCount"></span>
+</div>
+
+<!-- Member popup -->
+<div class="popup-backdrop" id="memberPopup">
+  <div class="popup">
+    <div class="popup-title">Wer hat diese Aufgabe erledigt?</div>
+    <div class="popup-task-name" id="popupTaskName"></div>
+    <div class="member-buttons" id="memberButtons"></div>
+    <button class="popup-cancel" onclick="closePopup()">Abbrechen</button>
+  </div>
+</div>
+
+<!-- Snackbar -->
+<div class="snackbar" id="snackbar">
+  <span id="snackMsg"></span>
+  <button class="snackbar-undo" onclick="undoLast()">↩ Rückgängig</button>
+</div>
+
+<!-- Log modal -->
+<div class="modal-backdrop" id="logModal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title-text">📋 Protokoll</span>
+      <button class="modal-close" onclick="closeModal('logModal')">✕</button>
+    </div>
+    <div id="logContent"></div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════
+// CONFIG
+// ════════════════════════════════════════
+const MEMBERS = [
+  { id:'EP', name:'Emanuela', color:'#2d6a4f' },
+  { id:'CM', name:'Carolina',  color:'#c9184a' },
+  { id:'LK', name:'Larissa',   color:'#0077b6' },
+];
+
+const CATEGORIES = {
+  'täglich Steri':    { color:'#1b6ca8', days:[1,2,3,4,5] },
+  'täglich Praxis':   { color:'#2d6a4f', days:[1,2,3,4,5] },
+  'immer abends':     { color:'#6a3d9a', days:[1,2,3,4,5] },
+  'Montags':          { color:'#c9184a', days:[1] },
+  'Dienstags':        { color:'#d4670a', days:[2] },
+  'Mittwochs':        { color:'#0a7a6a', days:[3] },
+  'Donnerstags':      { color:'#7b5ea7', days:[4] },
+  'Freitags':         { color:'#1a7a3c', days:[5] },
+  'Monatlich':        { color:'#8b5e3c', days:[] },
+  'immer monatlich':  { color:'#8b5e3c', days:[] },
+};
+
+const STATE_KEY  = 'praxis_state_v2';
+const LOG_KEY    = 'praxis_log_v2';
+
+// ════════════════════════════════════════
+// TASKS
+// ════════════════════════════════════════
+let tasks = [
+  // täglich Steri
+  {id:1,  title:'Instrumente aus Wasserbad ins Thermo legen und gleich starten!', time:'07:00', category:'täglich Steri', note:'', done:false, assignee:null},
+  {id:2,  title:'Helixtest Euronda E 10', time:'07:30', category:'täglich Steri', note:'', done:false, assignee:null},
+  {id:3,  title:'Josafe Thermodesinfektor', time:'08:00', category:'täglich Steri', note:'', done:false, assignee:null},
+  {id:4,  title:'Thermometer Medikamentenschrank ablesen / Reset drücken', time:'08:00', category:'täglich Steri', note:'', done:false, assignee:null},
+  {id:6,  title:'Im Ultraschall dest. Wasser auswechseln', time:'16:30', category:'täglich Steri', note:'', done:false, assignee:null},
+  {id:7,  title:'Wasserdestillator starten / mittags leeren / nachmittags nochmals leeren', time:'07:00', category:'täglich Steri', note:'Morgens starten, mittags bei Bedarf leeren, nachmittags erneut', done:false, assignee:null},
+  // täglich Praxis – Morgen (Liste A)
+  {id:8,  title:'Kompressor einschalten', time:'07:00', category:'täglich Praxis', note:'Morgenroutine A', done:false, assignee:null},
+  {id:81, title:'Alle Räume lüften', time:'07:00', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:82, title:'PC Chef und RX Leser einschalten', time:'07:00', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:83, title:'Kaffeemaschine einschalten und 2× mit Wasser spülen', time:'07:05', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:84, title:'OP1 + OP2 einschalten und 10 Liter Wasser durchsaugen', time:'07:10', category:'täglich Praxis', note:'10 Liter – nicht vergessen!', done:false, assignee:null},
+  {id:86, title:'Winkelstücke laufen lassen (falls noch in Assistina)', time:'07:20', category:'täglich Praxis', note:'Nur wenn Winkelstücke noch drin sind', done:false, assignee:null},
+  {id:87, title:'Zimmer gemäss Tagesplan vorbereiten', time:'07:30', category:'täglich Praxis', note:'', done:false, assignee:null},
+  // täglich Praxis – Laufend
+  {id:109, title:'Briefkasten leeren und Post verteilen', time:'08:00', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:108, title:'Staubsaugen – besonders in Ecken', time:'07:45', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:104, title:'Anrufbeantworter abhören, Patienten zurückrufen und Mails checken', time:'08:00', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:10, title:'RC Liste abarbeiten!', time:'09:00', category:'täglich Praxis', note:'Mindestens 10 Anrufe täglich', done:false, assignee:null},
+  {id:11, title:'WC kontrollieren – Morgen, Mittag und Abend', time:'08:00', category:'täglich Praxis', note:'Boden prüfen!', done:false, assignee:null},
+  {id:100, title:'Wasserflasche Cart OP1 leeren', time:'18:28', category:'täglich Praxis', note:'Abends leeren', done:false, assignee:null},
+  // täglich Praxis – Abend (Liste B)
+  {id:88, title:'Zimmer desinfizieren inkl. Griffe', time:'18:30', category:'täglich Praxis', note:'Abendroutine B', done:false, assignee:null},
+  {id:90, title:'OP1 + OP2 Orotol Absauganlage durchsaugen', time:'18:40', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:91, title:'Stuhl auf höchste Position, Assistenzstuhl weg vom Amalgamabscheider', time:'18:45', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:92, title:'Alle Abfälle leeren', time:'18:45', category:'täglich Praxis', note:'Auch Abfall Chef, Küche und WC', done:false, assignee:null},
+  {id:93, title:'WC desinfizieren + Griffe Fenster und Türe kontrollieren', time:'18:50', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:94, title:'Letzter Thermogang bis 15:30 Uhr – Instrumente in gelbe Zone', time:'15:30', category:'täglich Praxis', note:'Gebrauchte Instrumente danach in separater Box mit Wasser bedeckt in rote Zone', done:false, assignee:null},
+  {id:95, title:'Assistina reinigen, Tank ausspülen, ausschalten', time:'18:55', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:96, title:'Schweissgerät ausschalten und ausstecken', time:'19:00', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:97, title:'Alle Stühle ausschalten', time:'19:00', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:12, title:'OPT ausschalten (OP2)', time:'19:00', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:13, title:'Drucker, Terminkärtchendrucker und Papierschrederer ausschalten', time:'19:00', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:98, title:'Steri Euronda E 10 + Etikettendrucker ausschalten', time:'19:05', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:14, title:'Kompressor ausschalten und Räume abschliessen', time:'19:15', category:'täglich Praxis', note:'Beim Umziehen', done:false, assignee:null},
+  // immer abends
+  {id:15, title:'Kaffeemaschine reinigen und Kapselbehälter leeren', time:'19:00', category:'immer abends', note:'', done:false, assignee:null},
+  {id:16, title:'Lampen ausgeschaltet kontrollieren', time:'19:15', category:'immer abends', note:'', done:false, assignee:null},
+  {id:105, title:'Rezeption aufräumen', time:'18:55', category:'täglich Praxis', note:'', done:false, assignee:null},
+  {id:103, title:'Post einwerfen', time:'19:00', category:'täglich Praxis', note:'Abends', done:false, assignee:null},
+  {id:99, title:'Destillator ausgesteckt und Keller abgeschlossen kontrollieren', time:'19:10', category:'immer abends', note:'', done:false, assignee:null},
+  {id:18, title:'📁 Tages-Sicherung in Proton Drive speichern', time:'19:30', category:'immer abends', note:'Export-Taste unten → Datei in Proton Drive App ablegen', done:false, assignee:null},
+  // Montags
+  {id:19, title:'BPR Dental Cart mit Wasser durchspülen', time:'', category:'Montags', note:'', done:false, assignee:null},
+  {id:20, title:'Vacuum Test Euronda E 10', time:'', category:'Montags', note:'Kombiniert mit Helix Test – gleich als erstes auf kalter Kammer', done:false, assignee:null},
+  {id:21, title:'Ultraschall check', time:'', category:'Montags', note:'', done:false, assignee:null},
+  {id:22, title:'Euronda E 10 SD Card und Thermocard übertragen', time:'', category:'Donnerstags', note:'', done:false, assignee:null},
+  // Dienstags
+  {id:23, title:'OP1/2 kontrollieren, reinigen und Material auffüllen', time:'', category:'Freitags', note:'', done:false, assignee:null},
+  {id:24, title:'Bestellung auspacken (Larissa)', time:'', category:'Dienstags', note:'Bei Lieferung', done:false, assignee:null},
+  // Mittwochs
+  {id:25, title:'Reinigung Praxis – Oberflächen OBEN abstauben', time:'', category:'Freitags', note:'Kästen, OP-Lampen, Bilder, Türrahmen – auf Spinnennetze kontrollieren', done:false, assignee:null},
+  // Donnerstags
+  {id:26, title:'Sterilisator Euronda E 10 und Thermodesinfektor reinigen', time:'', category:'Donnerstags', note:'Bei Meldung "Frischwassertank auffüllen"', done:false, assignee:null},
+  // Freitags
+  {id:27, title:'Lui über kommende Aufträge informieren', time:'', category:'Freitags', note:'Mail oder Tel', done:false, assignee:null},
+  {id:29, title:'Zimmer abstauben', time:'', category:'Freitags', note:'', done:false, assignee:null},
+  {id:30, title:'BPR Dental Cart mit Bilpron durchspülen', time:'', category:'Freitags', note:'', done:false, assignee:null},
+  {id:32, title:'Polymerisationslampe aufladen', time:'', category:'Freitags', note:'', done:false, assignee:null},
+  {id:107, title:'Wäsche mitgeben und Rucksack kontrollieren', time:'07:30', category:'Freitags', note:'Freitagmorgen', done:false, assignee:null},
+  {id:106, title:'Recalbox sterilisieren', time:'12:00', category:'Freitags', note:'Freitagmittag', done:false, assignee:null},
+  {id:102, title:'Metallbehälter CHX ausspülen und trocknen', time:'', category:'Freitags', note:'', done:false, assignee:null},
+  {id:101, title:'Wasserdestillator entkalken, trocknen und offen lassen', time:'', category:'Freitags', note:'Wöchentlich jeden Freitag', done:false, assignee:null},
+  // Monatlich
+  {id:35, title:'Timestation – Stundenrapport', time:'', category:'Monatlich', note:'Jeden 1. des Monats', done:false, assignee:null},
+  {id:36, title:'Destillator reinigen', time:'', category:'Monatlich', note:'Deckel aufschrauben, innen und Schlaufe reinigen – jeden 1.', done:false, assignee:null},
+  {id:37, title:'Karton rausbringen!', time:'', category:'Monatlich', note:'Jeden 14.', done:false, assignee:null},
+  {id:38, title:'Abfallkasten staubsaugen (OP 1 und OP 2)', time:'', category:'Monatlich', note:'Jeden 15. – Schubladen OP1/2 ausräumen und abdesinfizieren', done:false, assignee:null},
+  {id:39, title:'Medikamentenschrank reinigen', time:'', category:'Monatlich', note:'Jeden 15.', done:false, assignee:null},
+  {id:40, title:'Mit Staubwedel alle Schrankoberflächen reinigen', time:'', category:'Monatlich', note:'OPs, Steri, Wartezimmer – jeden 15.', done:false, assignee:null},
+  {id:41, title:'Mahnungen kontrollieren', time:'', category:'Monatlich', note:'Kai zuerst fragen – jeden 25.', done:false, assignee:null},
+  {id:42, title:'Stuhlsiebe auswechseln', time:'', category:'Monatlich', note:'', done:false, assignee:null},
+  {id:43, title:'Reinigungsbürste sterilisieren', time:'', category:'Monatlich', note:'Alle 3 Monate', done:false, assignee:null},
+  {id:44, title:'MD 555 durchsaugen + eine Kappe Javel in Speibecken', time:'', category:'immer monatlich', note:'Jeden 18.', done:false, assignee:null},
+];
+
+let shopping = [
+  {id:1,  supplier:'Swissmedico', name:'20 Feilen WB',                desc:'5x',                      bought:false},
+  {id:2,  supplier:'Swissmedico', name:'30 Feilen WB',                desc:'5x',                      bought:false},
+  {id:3,  supplier:'Swissmedico', name:'25 Feilen WB',                desc:'8x',                      bought:false},
+  {id:4,  supplier:'Swissmedico', name:'5/0 Naht',                    desc:'1x',                      bought:false},
+  {id:5,  supplier:'Dabamed',     name:'Ustomed Hebel',               desc:'',                        bought:false},
+  {id:6,  supplier:'Viking',      name:'Schreibunterlage Anamnese',   desc:'',                        bought:false},
+  {id:7,  supplier:'M&W',         name:'Interdental Keile Blau',      desc:'10x',                     bought:false},
+  {id:8,  supplier:'Jota AG',     name:'Kleine Diamanten für CP, FG', desc:'',                        bought:false},
+  {id:9,  supplier:'Jota AG',     name:'Intensiv Football',           desc:'',                        bought:false},
+  {id:10, supplier:'Galexis',     name:'Bio Gide compressed',         desc:'2x auf Lager',            bought:false},
+  {id:11, supplier:'Galexis',     name:'Combi Kit Collagen',          desc:'1x auf Lager',            bought:false},
+  {id:12, supplier:'Galexis',     name:'Bio Oss Pen',                 desc:'2x auf Lager',            bought:false},
+  {id:13, supplier:'Galexis',     name:'Amoxi Mepha 1000mg',          desc:'5x auf Lager',            bought:false},
+  {id:14, supplier:'Galexis',     name:'Amoxy Mepha 625mg',           desc:'5x auf Lager',            bought:false},
+  {id:15, supplier:'Galexis',     name:'Amoxy Mepha 750mg',           desc:'⚠️ 0x auf Lager!',        bought:false},
+  {id:16, supplier:'Galexis',     name:'Paracetamol',                 desc:'22x auf Lager',           bought:false},
+  {id:17, supplier:'Galexis',     name:'Dalacin C 300mg',             desc:'3x auf Lager',            bought:false},
+  {id:18, supplier:'Megamed',     name:'Handschuhe und Masken',       desc:'',                        bought:false},
+  {id:19, supplier:'Bien Air',    name:'Sterile Protection Sheet iPad',desc:'1x',                     bought:false},
+  {id:20, supplier:'Bien Air',    name:'Tubing Set Peristaltic Pump', desc:'2x',                      bought:false},
+];
+
+// ════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════
+let activeTab = 'heute';
+let pendingTaskId = null;
+let pendingDailyId = null;
+let lastAction = null;
+let snackTimer = null;
+
+function dateStr(d) {
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+
+function loadState() {
+  try {
+    const s = JSON.parse(localStorage.getItem(STATE_KEY)||'{}');
+    if (s.date === dateStr(new Date())) {
+      (s.tasks||[]).forEach(st => {
+        const t = tasks.find(t=>t.id===st.id);
+        if (t) { t.done=st.done; t.assignee=st.assignee; }
+      });
+    }
+  } catch(e) {}
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STATE_KEY, JSON.stringify({
+      date: dateStr(new Date()),
+      tasks: tasks.map(t=>({id:t.id, done:t.done, assignee:t.assignee}))
+    }));
+  } catch(e) {}
+}
+
+// ════════════════════════════════════════
+// LOG
+// ════════════════════════════════════════
+function getLog() { try { return JSON.parse(localStorage.getItem(LOG_KEY)||'[]'); } catch(e) { return []; } }
+function saveLog(l) { try { localStorage.setItem(LOG_KEY, JSON.stringify(l)); } catch(e) {} }
+
+function addLog(task, assigneeId) {
+  const log = getLog();
+  const now = new Date();
+  log.push({
+    d: dateStr(now),
+    t: now.toTimeString().slice(0,5),
+    id: task.id,
+    title: task.title,
+    cat: task.category,
+    by: assigneeId,
+  });
+  saveLog(log);
+  updateLogCount();
+}
+
+function removeLastLog(taskId) {
+  const log = getLog();
+  const idx = [...log].reverse().findIndex(e=>e.id===taskId);
+  if (idx>=0) { log.splice(log.length-1-idx, 1); saveLog(log); updateLogCount(); }
+}
+
+function updateLogCount() {
+  const n = getLog().length;
+  document.getElementById('logCount').textContent = n + ' Einträge';
+}
+
+// ════════════════════════════════════════
+// PROTON DRIVE EXPORT
+// ════════════════════════════════════════
+function exportForProton() {
+  const log = getLog();
+  const today = dateStr(new Date());
+  const todayLog = log.filter(e=>e.d===today);
+
+  if (!todayLog.length) {
+    alert('Heute wurden noch keine Aufgaben erledigt.');
+    return;
+  }
+
+  // Compact format: one line per task
+  const lines = [
+    `PRAXIS TAGES-SICHERUNG ${today}`,
+    `Erstellt: ${new Date().toLocaleTimeString('de-CH')}`,
+    `Erledigte Aufgaben: ${todayLog.length}`,
+    '─'.repeat(40),
+    ...todayLog.map(e => `${e.t} | ${e.by} | ${e.title}`),
+    '─'.repeat(40),
+    `Total Protokoll: ${log.length} Einträge seit Beginn`,
+  ];
+
+  const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Praxis-${today}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+
+  // Mark the backup task as done if it exists and isn't done yet
+  const backupTask = tasks.find(t=>t.id===18);
+  if (backupTask && !backupTask.done) {
+    // auto-prompt member selection
+    openMemberPopup(18);
+  }
+}
+
+// ════════════════════════════════════════
+// RENDER
+// ════════════════════════════════════════
+function todayTasks() {
+  const dow = new Date().getDay();
+  return tasks.filter(t => {
+    const c = CATEGORIES[t.category];
+    return c && c.days.includes(dow);
+  });
+}
+
+function renderHeute() {
+  const list = todayTasks();
+  const done = list.filter(t=>t.done).length, total = list.length;
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById('progressPct').textContent = pct+'%';
+  document.getElementById('progressFill').style.width = pct+'%';
+
+  const el = document.getElementById('taskListHeute');
+  el.innerHTML = '';
+  const cats = groupBy(list, 'category');
+  Object.entries(cats).forEach(([cat,items]) => {
+    el.appendChild(buildCatGroup(cat, items));
+  });
+  renderDailyTasks(el);
+}
+
+function renderAlle() {
+  const el = document.getElementById('taskListAlle');
+  el.innerHTML = '';
+  const catOrder = Object.keys(CATEGORIES);
+  catOrder.forEach(cat => {
+    const items = tasks.filter(t=>t.category===cat);
+    if (!items.length) return;
+    el.appendChild(buildCatGroup(cat, items));
+  });
+}
+
+
+// Thematic subgroups per category
+const SUBGROUPS = {
+  'täglich Praxis': [
+    { label: '🌅 Morgen', ids: [8,81,82,83,84,86,87,109,108,104] },
+    { label: '📞 Tagsüber', ids: [10,11] },
+    { label: '🌆 Abend', ids: [100,88,90,91,92,93,94,95,96,97,12,13,98,85,89,103,105,14] },
+  ],
+  'täglich Steri': [
+    { label: '🌅 Morgen', ids: [1,2,3,4,7] },
+    { label: '🌆 Abend', ids: [6] },
+  ],
+  'immer abends': [
+    { label: '🌙 Abendcheck', ids: [15,16,99,18] },
+  ],
+  'Freitags': [
+    { label: '🧹 Reinigung', ids: [25,29,23] },
+    { label: '🔧 Geräte & Material', ids: [102,101,30,32] },
+    { label: '📋 Organisation', ids: [27,21] },
+  ],
+};
+function buildCatGroup(cat, items) {
+  const cfg = CATEGORIES[cat] || { color:'#888' };
+  const done = items.filter(t=>t.done).length;
+  const grp = document.createElement('div');
+  grp.className = 'cat-group';
+  const hdr = document.createElement('div');
+  hdr.className = 'cat-header';
+  hdr.innerHTML = `<div class="cat-dot" style="background:${cfg.color}"></div><span class="cat-title">${cat}</span><span class="cat-progress">${done}/${items.length}</span>`;
+  grp.appendChild(hdr);
+
+  const subs = SUBGROUPS[cat];
+  if (subs) {
+    // Render with named subgroups in 2-col grid
+    const allMapped = subs.flatMap(s=>s.ids);
+    const unmapped = items.filter(t=>!allMapped.includes(t.id));
+    const subsToRender = [...subs];
+    if (unmapped.length) subsToRender.push({ label:'📌 Weitere', ids: unmapped.map(t=>t.id) });
+
+    subsToRender.forEach(sub => {
+      const subItems = sub.ids.map(id=>items.find(t=>t.id===id)).filter(Boolean);
+      if (!subItems.length) return;
+      const sg = document.createElement('div');
+      sg.className = 'subgroup';
+      sg.innerHTML = `<div class="subgroup-title">${sub.label}</div>`;
+      const grid = document.createElement('div');
+      grid.className = 'tile-grid';
+      subItems.forEach(t=>grid.appendChild(buildTile(t)));
+      sg.appendChild(grid);
+      grp.appendChild(sg);
+    });
+  } else {
+    // Default: plain 2-col grid sorted by time
+    const grid = document.createElement('div');
+    grid.className = 'tile-grid';
+    items.sort((a,b)=>(a.time||'99:99').localeCompare(b.time||'99:99')).forEach(t=>grid.appendChild(buildTile(t)));
+    grp.appendChild(grid);
+  }
+  return grp;
+}
+
+function buildTile(task) {
+  const cfg = CATEGORIES[task.category] || { color:'#888' };
+  const tile = document.createElement('div');
+  tile.className = 'task-tile' + (task.done?' done':'');
+  tile.dataset.id = task.id;
+  tile.onclick = () => tileClick(task.id);
+
+  const now = new Date();
+  let timeClass = 'ok';
+  if (task.time) {
+    const [h,m] = task.time.split(':').map(Number);
+    if ((h*60+m) < (now.getHours()*60+now.getMinutes()) && !task.done) timeClass = '';
+  }
+
+  const assignee = task.assignee ? MEMBERS.find(m=>m.id===task.assignee) : null;
+
+  tile.innerHTML = `
+    <div class="tile-bar" style="background:${cfg.color}"></div>
+    <div class="tile-check">
+      <div class="tile-check-inner" style="${task.done?'background:'+cfg.color+';border-color:'+cfg.color:''}">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <polyline points="2,7 5.5,10.5 12,3.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+    <div class="tile-body">
+      <div class="tile-title">${task.title}</div>
+      ${task.note ? `<div class="tile-note">${task.note}</div>` : ''}
+      <div class="tile-meta">
+        ${task.time ? `<span class="tile-time ${timeClass}">${task.time}</span>` : ''}
+        ${assignee ? `<span class="tile-assignee" style="background:${assignee.color}">${assignee.id}</span>` : ''}
+      </div>
+    </div>`;
+  return tile;
+}
+
+function tileClick(taskId) {
+  const t = tasks.find(t=>t.id===taskId);
+  if (!t) return;
+  if (t.done) {
+    // Undo
+    t.done = false;
+    t.assignee = null;
+    removeLastLog(taskId);
+    saveState();
+    renderAll();
+    return;
+  }
+  openMemberPopup(taskId);
+}
+
+// ════════════════════════════════════════
+// MEMBER POPUP
+// ════════════════════════════════════════
+
+// Single pending object - avoids all variable confusion
+let pending = { type: null, id: null }; // type: 'regular' or 'daily'
+
+function openMemberPopup(taskId) {
+  const t = tasks.find(t=>t.id===taskId);
+  if (!t) return;
+  pending = { type: 'regular', id: taskId };
+  showPopup(t.title);
+}
+
+function showPopup(title) {
+  document.getElementById('popupTaskName').textContent = title;
+  const btns = document.getElementById('memberButtons');
+  btns.innerHTML = '';
+  MEMBERS.forEach(m => {
+    const btn = document.createElement('button');
+    btn.className = 'member-btn';
+    btn.style.background = m.color;
+    btn.innerHTML = `<span class="btn-initials">${m.id}</span><span class="btn-name">${m.name}</span>`;
+    btn.setAttribute('data-member', m.id);
+    btns.appendChild(btn);
+  });
+  document.getElementById('memberPopup').classList.add('open');
+}
+
+// Single click handler on the buttons container - avoids closure issues
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('memberButtons').addEventListener('click', e => {
+    const btn = e.target.closest('[data-member]');
+    if (!btn) return;
+    assignMember(btn.getAttribute('data-member'));
+  });
+});
+
+function assignMember(memberId) {
+  closePopup();
+  if (pending.type === 'regular') {
+    const t = tasks.find(t=>t.id===pending.id);
+    if (!t) { pending = {type:null,id:null}; return; }
+    t.done = true;
+    t.assignee = memberId;
+    addLog(t, memberId);
+    lastAction = { taskId: t.id };
+    saveState();
+    renderAll();
+    showSnack('✓ ' + t.title.slice(0,28) + '… – ' + memberId);
+  } else if (pending.type === 'daily') {
+    const daily = getDailyTasks();
+    const dt = daily.find(t=>t.id===pending.id);
+    if (!dt) { pending = {type:null,id:null}; return; }
+    dt.done = true;
+    dt.assignee = memberId;
+    saveDailyTasks(daily);
+    addLog({ id: dt.id, title: dt.title, category: 'Heute (einmalig)' }, memberId);
+    renderHeute();
+    showSnack('✓ ' + dt.title.slice(0,28) + '… – ' + memberId);
+  }
+  pending = { type: null, id: null };
+}
+
+function closePopup() {
+  document.getElementById('memberPopup').classList.remove('open');
+  pendingTaskId = null;
+}
+
+// ════════════════════════════════════════
+// UNDO
+// ════════════════════════════════════════
+function undoLast() {
+  if (!lastAction) return;
+  const t = tasks.find(t=>t.id===lastAction.taskId);
+  if (!t) return;
+  t.done = false;
+  t.assignee = null;
+  removeLastLog(t.id);
+  saveState();
+  renderAll();
+  lastAction = null;
+  hideSnack();
+}
+
+// ════════════════════════════════════════
+// SNACKBAR
+// ════════════════════════════════════════
+function showSnack(msg) {
+  document.getElementById('snackMsg').textContent = msg;
+  document.getElementById('snackbar').classList.add('show');
+  clearTimeout(snackTimer);
+  snackTimer = setTimeout(hideSnack, 4000);
+}
+function hideSnack() {
+  document.getElementById('snackbar').classList.remove('show');
+}
+
+// ════════════════════════════════════════
+// SHOPPING
+// ════════════════════════════════════════
+function renderShopping() {
+  const done = shopping.filter(s=>s.bought).length, total = shopping.length;
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById('shopPct').textContent = `${done}/${total}`;
+  document.getElementById('shopFill').style.width = pct+'%';
+
+  const el = document.getElementById('shoppingList');
+  el.innerHTML = '';
+  const bySupplier = groupBy(shopping, 'supplier');
+  Object.entries(bySupplier).forEach(([supplier, items]) => {
+    const grp = document.createElement('div');
+    grp.className = 'supplier-group';
+    grp.innerHTML = `<div class="supplier-header">${supplier}<span class="supplier-count">${items.filter(s=>s.bought).length}/${items.length}</span></div>`;
+    items.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'shop-tile' + (item.bought?' bought':'');
+      div.onclick = () => { item.bought=!item.bought; renderShopping(); };
+      div.innerHTML = `
+        <div class="shop-check"></div>
+        <div style="flex:1">
+          <div class="shop-name">${item.name}</div>
+          ${item.desc?`<div class="shop-desc">${item.desc}</div>`:''}
+        </div>`;
+      grp.appendChild(div);
+    });
+    el.appendChild(grp);
+  });
+
+  // Add row
+  const row = document.createElement('div');
+  row.className = 'shop-add';
+  row.innerHTML = `
+    <input class="shop-input" id="newShopItem" placeholder="Artikel hinzufügen…">
+    <input class="shop-input" id="newShopSupplier" placeholder="Lieferant" style="max-width:130px">
+    <button class="shop-add-btn" onclick="addShopItem()">+</button>`;
+  el.appendChild(row);
+}
+
+function addShopItem() {
+  const name = document.getElementById('newShopItem').value.trim();
+  const supplier = document.getElementById('newShopSupplier').value.trim() || 'Sonstiges';
+  if (!name) return;
+  shopping.push({id:Date.now(), supplier, name, desc:'', bought:false});
+  renderShopping();
+  document.getElementById('newShopItem').value='';
+  document.getElementById('newShopSupplier').value='';
+}
+
+// ════════════════════════════════════════
+// LOG MODAL
+// ════════════════════════════════════════
+function openLog() {
+  const log = getLog().slice().reverse();
+  const el = document.getElementById('logContent');
+  if (!log.length) {
+    el.innerHTML = '<div class="empty-state">Noch keine Einträge im Protokoll.</div>';
+  } else {
+    const mc = id => { const m=MEMBERS.find(m=>m.id===id); return m?m.color:'#888'; };
+    el.innerHTML = '<table class="log-table"><thead><tr><th>Datum</th><th>Zeit</th><th>Aufgabe</th><th>Von</th></tr></thead><tbody>'+
+      log.map(e=>`<tr>
+        <td style="font-family:'DM Mono',monospace;font-size:12px;white-space:nowrap">${e.d}</td>
+        <td style="font-family:'DM Mono',monospace;font-size:12px">${e.t}</td>
+        <td style="font-size:13px">${e.title.slice(0,35)}${e.title.length>35?'…':''}</td>
+        <td><span class="log-badge" style="background:${mc(e.by)}">${e.by}</span></td>
+      </tr>`).join('')+
+      '</tbody></table>';
+  }
+  document.getElementById('logModal').classList.add('open');
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+// ════════════════════════════════════════
+// LEGEND
+// ════════════════════════════════════════
+function renderLegend() {
+  const el = document.getElementById('legend');
+  el.innerHTML = Object.entries(CATEGORIES)
+    .filter(([,v])=>v.days.length>0||true)
+    .map(([name,cfg])=>`<div class="legend-chip"><div class="legend-dot" style="background:${cfg.color}"></div>${name}</div>`)
+    .join('');
+}
+
+// ════════════════════════════════════════
+// TABS
+// ════════════════════════════════════════
+function switchTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.tab').forEach((t,i)=>
+    t.classList.toggle('active', ['heute','alle','einkauf','custom'][i]===tab)
+  );
+  document.getElementById('viewHeute').classList.toggle('hidden', tab!=='heute');
+  document.getElementById('viewAlle').classList.toggle('hidden', tab!=='alle');
+  document.getElementById('viewEinkauf').classList.toggle('hidden', tab!=='einkauf');
+  document.getElementById('viewCustom').classList.toggle('hidden', tab!=='custom');
+  if (tab==='custom') renderCustomTasks();
+}
+
+function renderAll() { renderHeute(); renderAlle(); }
+
+// ════════════════════════════════════════
+// HELPERS
+// ════════════════════════════════════════
+function groupBy(arr,key){return arr.reduce((a,i)=>({...a,[i[key]]:[...(a[i[key]]||[]),i]}),{});}
+
+// Close modals on backdrop click
+['memberPopup','logModal'].forEach(id=>{
+  document.getElementById(id).addEventListener('click', e=>{
+    if(e.target===document.getElementById(id)) {
+      if(id==='memberPopup') closePopup(); else closeModal(id);
+    }
+  });
+});
+
+// ════════════════════════════════════════
+// CUSTOM TASKS (langfristig + täglich)
+// ════════════════════════════════════════
+const CUSTOM_KEY = 'praxis_custom_v1';
+const FREQ_COLORS = { einmalig:'#8b5e3c', täglich:'#2d6a4f', wöchentlich:'#1b6ca8', monatlich:'#c9184a' };
+let selectedFreq = 'einmalig';
+
+function getCustomTasks() {
+  try { return JSON.parse(localStorage.getItem(CUSTOM_KEY)||'[]'); } catch(e) { return []; }
+}
+function saveCustomTasks(t) {
+  try { localStorage.setItem(CUSTOM_KEY, JSON.stringify(t)); } catch(e) {} 
+}
+
+function selectFreq(btn) {
+  document.querySelectorAll('.freq-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedFreq = btn.dataset.freq;
+}
+
+function addCustomTask() {
+  const title = document.getElementById('customTitle').value.trim();
+  const note  = document.getElementById('customNote').value.trim();
+  if (!title) return;
+  const tasks = getCustomTasks();
+  tasks.push({ id: Date.now(), title, note, freq: selectedFreq, done: false, createdAt: dateStr(new Date()) });
+  saveCustomTasks(tasks);
+  document.getElementById('customTitle').value = '';
+  document.getElementById('customNote').value = '';
+  renderCustomTasks();
+}
+
+function toggleCustomDone(id) {
+  const tasks = getCustomTasks();
+  const t = tasks.find(t=>t.id===id);
+  if (!t) return;
+  t.done = !t.done;
+  if (t.done) t.doneAt = dateStr(new Date());
+  else delete t.doneAt;
+  saveCustomTasks(tasks);
+  renderCustomTasks();
+}
+
+function deleteCustomTask(id) {
+  const tasks = getCustomTasks().filter(t=>t.id!==id);
+  saveCustomTasks(tasks);
+  renderCustomTasks();
+}
+
+function renderCustomTasks() {
+  const el = document.getElementById('customTaskList');
+  if (!el) return;
+  el.innerHTML = '';
+  const tasks = getCustomTasks();
+  if (!tasks.length) {
+    el.innerHTML = '<div class="empty-state">Noch keine eigenen Aufgaben.<br>Oben erfassen.</div>';
+    return;
+  }
+  const freqOrder = ['täglich','wöchentlich','monatlich','einmalig'];
+  freqOrder.forEach(freq => {
+    const items = tasks.filter(t=>t.freq===freq);
+    if (!items.length) return;
+    const hdr = document.createElement('div');
+    hdr.className = 'custom-section-header';
+    hdr.textContent = freq.charAt(0).toUpperCase() + freq.slice(1);
+    el.appendChild(hdr);
+    items.forEach(t => {
+      const div = document.createElement('div');
+      div.className = 'custom-task-item' + (t.done?' done':'');
+      div.innerHTML = `
+        <div class="custom-check ${t.done?'done':''}" onclick="toggleCustomDone(${t.id})"></div>
+        <div style="flex:1">
+          <div class="custom-title">${t.title}</div>
+          ${t.note?`<div style="font-size:12px;color:var(--text-muted);margin-top:2px">${t.note}</div>`:''}
+        </div>
+        <span class="custom-freq" style="background:${FREQ_COLORS[t.freq]||'#888'}">${t.freq}</span>
+        <button class="custom-delete" onclick="deleteCustomTask(${t.id})">🗑</button>`;
+      el.appendChild(div);
+    });
+  });
+}
+
+// ════════════════════════════════════════
+// DAILY TASKS (einmalig, heute)
+// ════════════════════════════════════════
+const DAILY_KEY = 'praxis_daily_v2';
+
+function getDailyTasks() {
+  try {
+    const d = JSON.parse(localStorage.getItem(DAILY_KEY)||'{}');
+    if (d.date === dateStr(new Date())) return d.tasks || [];
+    return []; // new day → empty
+  } catch(e) { return []; }
+}
+
+function saveDailyTasks(tasks) {
+  try {
+    localStorage.setItem(DAILY_KEY, JSON.stringify({
+      date: dateStr(new Date()),
+      tasks
+    }));
+  } catch(e) {}
+}
+
+function openDailyInput() {
+  document.getElementById('dailyAddBtn').style.display = 'none';
+  const wrap = document.getElementById('dailyInputWrap');
+  wrap.classList.add('open');
+  document.getElementById('dailyInput').focus();
+}
+
+function closeDailyInput() {
+  document.getElementById('dailyAddBtn').style.display = 'flex';
+  document.getElementById('dailyInputWrap').classList.remove('open');
+  document.getElementById('dailyInput').value = '';
+}
+
+function confirmDailyTask() {
+  const val = document.getElementById('dailyInput').value.trim();
+  if (!val) return;
+  const daily = getDailyTasks();
+  daily.push({ id: Date.now(), title: val, done: false, assignee: null });
+  saveDailyTasks(daily);
+  closeDailyInput();
+  renderHeute();
+}
+
+function toggleDailyDone(id) {
+  const daily = getDailyTasks();
+  const t = daily.find(t=>t.id===id);
+  if (!t) return;
+  if (t.done) {
+    t.done = false; t.assignee = null;
+    saveDailyTasks(daily);
+    renderHeute();
+    return;
+  }
+  pending = { type: 'daily', id: id };
+  showPopup(t.title);
+}
+
+
+function renderDailyTasks(container) {
+  const daily = getDailyTasks();
+  const wrap = document.createElement('div');
+  wrap.className = 'daily-add-wrap';
+
+  // Render existing daily tasks
+  if (daily.length) {
+    const grid = document.createElement('div');
+    grid.className = 'tile-grid';
+    grid.style.marginBottom = '10px';
+    daily.forEach(t => {
+      const tile = document.createElement('div');
+      tile.className = 'task-tile daily-task-tile' + (t.done?' done':'');
+      tile.onclick = () => toggleDailyDone(t.id);
+      const assignee = t.assignee ? MEMBERS.find(m=>m.id===t.assignee) : null;
+      tile.innerHTML = `
+        <div class="tile-bar" style="background:#b8860b"></div>
+        <div class="tile-check">
+          <div class="tile-check-inner" style="${t.done?'background:#b8860b;border-color:#b8860b':''}">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <polyline points="2,7 5.5,10.5 12,3.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="tile-body">
+          <div class="tile-title">${t.title}</div>
+          <div class="tile-meta">
+            <span class="daily-badge">Heute</span>
+            ${assignee ? `<span class="tile-assignee" style="background:${assignee.color}">${assignee.id}</span>` : ''}
+          </div>
+        </div>`;
+      grid.appendChild(tile);
+    });
+    wrap.appendChild(grid);
+  }
+
+  // Add button
+  const btn = document.createElement('button');
+  btn.className = 'daily-add-btn';
+  btn.id = 'dailyAddBtn';
+  btn.innerHTML = '＋ Aufgabe für heute hinzufügen';
+  btn.onclick = openDailyInput;
+  wrap.appendChild(btn);
+
+  // Input
+  const inputWrap = document.createElement('div');
+  inputWrap.className = 'daily-input-wrap';
+  inputWrap.id = 'dailyInputWrap';
+  inputWrap.innerHTML = `
+    <div class="daily-input-header">📌 Einmalige Aufgabe für heute</div>
+    <div class="daily-input-body">
+      <input class="daily-input" id="dailyInput" type="text" placeholder="z.B. Patient Müller zurückrufen…">
+      <div class="daily-input-actions">
+        <button class="daily-confirm-btn" onclick="confirmDailyTask()">Hinzufügen</button>
+        <button class="daily-cancel-btn" onclick="closeDailyInput()">Abbrechen</button>
+      </div>
+    </div>`;
+  wrap.appendChild(inputWrap);
+
+  container.appendChild(wrap);
+
+  // Enter key support
+  setTimeout(() => {
+    const inp = document.getElementById('dailyInput');
+    if (inp) inp.addEventListener('keydown', e => { if(e.key==='Enter') confirmDailyTask(); });
+  }, 100);
+}
+
+// ════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════
+function init() {
+  loadState();
+  const now = new Date();
+  const days = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+  const months = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  document.getElementById('dateDisplay').textContent = `${days[now.getDay()]}, ${now.getDate()}. ${months[now.getMonth()]}`;
+  renderLegend();
+  renderAll();
+  renderShopping();
+  updateLogCount();
+}
+
+init();
+</script>
+</body>
+</html>
